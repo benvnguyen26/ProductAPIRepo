@@ -1,0 +1,168 @@
+{
+	"info": {
+		"_postman_id": "27cf0995-4cd9-4932-95e7-82735b226020",
+		"name": "productsapp-automation",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "43662350",
+		"_collection_link": "https://bennguyen-7110883.postman.co/workspace/632bc4f3-d106-4f50-8bb9-6ef2b58aa0ee/collection/43662350-27cf0995-4cd9-4932-95e7-82735b226020?action=share&source=collection_link&creator=43662350"
+	},
+	"item": [
+		{
+			"name": "Get All Products",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);\r",
+							"\r",
+							"// Check that 3 products are returned\r",
+							"pm.test(\"Response contains 3 products\", () => {\r",
+							"    pm.expect(jsonData.length).to.equal(3);\r",
+							"});\r",
+							"\r",
+							"// Product 1: Tomato Soup\r",
+							"pm.test(\"Product 1 ID is 1\", () => {\r",
+							"    pm.expect(jsonData[0].Id).to.equal(1);\r",
+							"});\r",
+							"pm.test(\"Product 1 Name is 'Tomato Soup'\", () => {\r",
+							"    pm.expect(jsonData[0].Name).to.equal(\"Tomato Soup\");\r",
+							"});\r",
+							"pm.test(\"Product 1 Category is 'Groceries'\", () => {\r",
+							"    pm.expect(jsonData[0].Category).to.equal(\"Groceries\");\r",
+							"});\r",
+							"pm.test(\"Product 1 Price is 1\", () => {\r",
+							"    pm.expect(jsonData[0].Price).to.equal(1);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44339/api/products",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44339",
+					"path": [
+						"api",
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = JSON.parse(responseBody);\r",
+							"\r",
+							"pm.test(\"Product ID is 1\", () => {\r",
+							"    pm.expect(jsonData.Id).to.equal(1);\r",
+							"});\r",
+							"pm.test(\"Product name is 'Tomato Soup'\", () => {\r",
+							"    pm.expect(jsonData.Name).to.equal(\"Tomato Soup\");\r",
+							"});\r",
+							"pm.test(\"Product category is 'Groceries'\", () => {\r",
+							"    pm.expect(jsonData.Category).to.equal(\"Groceries\");\r",
+							"});\r",
+							"pm.test(\"Product price is 1\", () => {\r",
+							"    pm.expect(jsonData.Price).to.equal(1);\r",
+							"});\r",
+							"pm.test(\"Response status is 200 OK\", () => {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"/* Tests for second product\r",
+							"pm.test(\"Product 2 ID is 2\", () => {\r",
+							"    pm.expect(jsonData[1].Id).to.equal(2);\r",
+							"});\r",
+							"pm.test(\"Product 2 Name is 'Yo-yo'\", () => {\r",
+							"    pm.expect(jsonData[1].Name).to.equal(\"Yo-yo\");\r",
+							"});\r",
+							"pm.test(\"Product 2 Category is 'Toys'\", () => {\r",
+							"    pm.expect(jsonData[1].Category).to.equal(\"Toys\");\r",
+							"});\r",
+							"pm.test(\"Product 2 Price is 3.75\", () => {\r",
+							"    pm.expect(jsonData[1].Price).to.equal(3.75);\r",
+							"});\r",
+							"\r",
+							"/*\r",
+							"/* Tests for third product\r",
+							"pm.test(\"Product 3 ID is 3\", () => {\r",
+							"    pm.expect(jsonData[2].Id).to.equal(3);\r",
+							"});\r",
+							"pm.test(\"Product 3 Name is 'Hammer'\", () => {\r",
+							"    pm.expect(jsonData[2].Name).to.equal(\"Hammer\");\r",
+							"});\r",
+							"pm.test(\"Product 3 Category is 'Hardware'\", () => {\r",
+							"    pm.expect(jsonData[2].Category).to.equal(\"Hardware\");\r",
+							"});\r",
+							"pm.test(\"Product 3 Price is 16.99\", () => {\r",
+							"    pm.expect(jsonData[2].Price).to.equal(16.99);\r",
+							"});\r",
+							"\r",
+							"// Status check\r",
+							"pm.test(\"Response status is 200 OK\", () => {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"*/"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:44339/api/products/1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44339",
+					"path": [
+						"api",
+						"products",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
